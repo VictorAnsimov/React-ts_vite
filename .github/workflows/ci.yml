@@ -20,11 +20,20 @@ jobs:
         node-version: '18'
         cache: 'npm'
     
+    - name: Debug versions
+      run: |
+        node --version
+        npm --version
+        npx tsc --version
+    
     - name: Install dependencies
-      run: npm install
+      run: npm ci
+    
+    - name: Type check
+      run: npx tsc --noEmit
     
     - name: Run linting
-      run: npm run lint --fix || true
+      run: npm run lint
     
     - name: Build project
       run: npm run build
